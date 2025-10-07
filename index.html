@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Search</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* subtle custom scrollbar */
+    ::-webkit-scrollbar { height: 8px; width: 8px; }
+    ::-webkit-scrollbar-thumb { background: rgba(15,23,42,0.12); border-radius: 999px; }
+    .match { background: linear-gradient(90deg, rgba(99,102,241,0.12), rgba(99,102,241,0.06)); padding: 0 .15rem; border-radius: .25rem; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+  <main class="min-h-screen flex items-start justify-center py-12 px-4">
+    <div class="w-full max-w-3xl">
+      <header class="mb-6">
+        <h1 class="text-3xl font-extrabold">Explore</h1>
+        <p class="text-sm text-slate-500 mt-1">Instant client-side search.</p>
+      </header>
+
+      <section class="bg-white rounded-2xl shadow p-5">
+        <label for="q" class="sr-only">Search</label>
+        <div class="relative">
+          <svg class="w-5 h-5 absolute left-3 top-3 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z"/>
+          </svg>
+          <input id="q" autocomplete="off" autofocus
+                 class="pl-11 pr-20 py-3 w-full rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-300 transition"
+                 placeholder="Search titles, links, or hidden notes — press Esc to clear"
+                 aria-label="Search through items" />
+          <button id="clearBtn" class="absolute right-3 top-2.5 text-sm px-3 py-1 rounded-full border border-slate-200 bg-white hover:bg-slate-50">Clear</button>
+        </div>
+
+        <div class="mt-3 flex items-center justify-between text-sm text-slate-500">
+          <div>Showing <strong id="visibleCount">0</strong> of <span id="totalCount">0</span></div>
+          <div class="text-xs">Instant • Client-side</div>
+        </div>
+
+        <ul id="results" class="mt-4 space-y-3" role="list" aria-live="polite"></ul>
+      </section>
+
+      <footer class="mt-6 text-xs text-slate-500">
+        Tip: use Arrow keys to navigate, Enter to open a result, Escape to clear.
+      </footer>
+    </div>
+  </main>
+
+  <script>
+
+    /***********************
+    * JSON Data
+    ***********************/
+    const data = [
+      {
+        "title": "My Portfolio",
+        "url": "portfolio",
+        "extra": "my portfolio resume case studies react showcasing a variety of works, projects, my skills, get inspired",
+        "snippet": "A curated list of my work and case studies."
+      },
+      {
+        "title": "AI Assistant",
+        "url": "assistant",
+        "extra": "assistant. This demo uses an embedded API key. Replace the simulated reply with your real backend call. chatbot. AI",
+        "snippet": "Demo • temporary chat"
+      },
+    ];
+
+    /***********************
+     * Utility helpers
+     ***********************/
+    function debounce(fn, wait = 100) {
+      let t;
+      return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), wait); };
+    }
+    function escapeRegExp(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+    // Highlight tokens inside the title only. Returns safe HTML.
+    function highlightTitle(title, query) {
+      if (!query) return escapeHtml(title);
+      const tokens = query.trim().split(/\s+/).filter(Boolean).map(escapeRegExp);
+      if (tokens.length === 0) return escapeHtml(title);
+      const re = new RegExp('(' + tokens.join('|') + ')', 'ig');
+      return escapeHtml(title).replace(re, '<span class="match">$1</span>');
+    }
+
+    // minimal HTML-escape to avoid XSS from data
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    /***********************
+     * State & elements
+     ***********************/
+    const qInput = document.getElementById('q');
+    const resultsEl = document.getElementById('results');
+    const totalCountEl = document.getElementById('totalCount');
+    const visibleCountEl = document.getElementById('visibleCount');
+    const clearBtn = document.getElementById('clearBtn');
+
+    let items = data.map((d, i) => ({ id: i, ...d }));
+    totalCountEl.textContent = items.length;
+
+    // keyboard navigation state
+    let selectedIndex = -1; // index in the displayedMatches array
+    let displayedMatches = [];
+
+    /***********************
+     * Search logic
+     * - tokens must all be present across title|url|extra
+     ***********************/
+    function search(q) {
+      const query = String(q || '').trim().toLowerCase();
+      if (!query) return items.slice();
+      const tokens = query.split(/\s+/).filter(Boolean);
+      return items.filter(item => {
+        const hay = `${item.title} ${item.url} ${item.extra}`.toLowerCase();
+        return tokens.every(t => hay.includes(t));
+      });
+    }
+
+    /***********************
+     * Render results
+     * - highlight only on title
+     * - each anchor gets tabindex=0 for focus
+     ***********************/
+    function render(matches, query) {
+      resultsEl.innerHTML = '';
+      displayedMatches = matches;
+      visibleCountEl.textContent = matches.length;
+      selectedIndex = -1;
+
+      if (matches.length === 0) {
+        resultsEl.innerHTML = '<li class="p-4 rounded-lg border border-dashed border-slate-200 text-slate-400">No results — try another query.</li>';
+        return;
+      }
+
+      const frag = document.createDocumentFragment();
+      matches.forEach((m, i) => {
+        const li = document.createElement('li');
+        li.className = 'p-3 rounded-lg hover:shadow transition flex items-start gap-4 cursor-pointer';
+        li.setAttribute('role', 'option');
+        li.dataset.index = i;
+
+        const anchor = document.createElement('a');
+        anchor.href = m.url;
+        anchor.className = 'flex-1 block focus:outline-none';
+        anchor.tabIndex = 0;
+        anchor.setAttribute('aria-label', `${m.title} — open ${m.url}`);
+
+        // title (highlighted), url (raw), snippet (raw)
+        anchor.innerHTML = `
+          <div class="text-slate-800 font-semibold leading-tight">${highlightTitle(m.title, query)}</div>
+          <div class="mt-1 text-xs text-slate-500">${escapeHtml(m.url)}</div>
+          <div class="mt-2 text-sm text-slate-600">${escapeHtml(m.snippet || '')}</div>
+        `;
+
+        // click focuses and opens normally
+        anchor.addEventListener('click', (e) => {
+          // default navigation allowed; no special behavior for relative links
+        });
+
+        // hover / mouseover updates selectedIndex for visual feedback
+        li.addEventListener('mousemove', () => {
+          setSelected(i);
+        });
+
+        li.appendChild(anchor);
+        frag.appendChild(li);
+      });
+
+      resultsEl.appendChild(frag);
+    }
+
+    /***********************
+     * Selection visual & focus
+     ***********************/
+    function setSelected(idx) {
+      const lis = Array.from(resultsEl.querySelectorAll('li'));
+      // clamp
+      if (lis.length === 0) { selectedIndex = -1; return; }
+      if (idx < 0) idx = 0;
+      if (idx >= lis.length) idx = lis.length - 1;
+      selectedIndex = idx;
+
+      lis.forEach((el, i) => {
+        const anchor = el.querySelector('a');
+        if (i === selectedIndex) {
+          el.classList.add('ring-2', 'ring-indigo-200', 'bg-indigo-50');
+          // move focus to anchor so keyboard Enter triggers naturally
+          anchor.focus({ preventScroll: true });
+        } else {
+          el.classList.remove('ring-2', 'ring-indigo-200', 'bg-indigo-50');
+        }
+      });
+    }
+
+    /***********************
+     * Wire input + keyboard
+     ***********************/
+    const doSearch = debounce(() => {
+      const q = qInput.value;
+      const matches = search(q);
+      render(matches, q);
+    }, 80);
+
+    qInput.addEventListener('input', () => {
+      doSearch();
+    });
+
+    // keyboard handling on the input for a11y:
+    qInput.addEventListener('keydown', (e) => {
+      const listLength = displayedMatches.length;
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        // if nothing selected, pick first
+        setSelected(selectedIndex < 0 ? 0 : Math.min(selectedIndex + 1, listLength - 1));
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        setSelected(selectedIndex <= 0 ? 0 : selectedIndex - 1);
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        // if a result is selected, open it; otherwise open first if exists
+        const targetIndex = (selectedIndex >= 0) ? selectedIndex : 0;
+        if (displayedMatches[targetIndex]) {
+          window.location.href = displayedMatches[targetIndex].url;
+        }
+      } else if (e.key === 'Escape') {
+        qInput.value = '';
+        doSearch();
+      }
+    });
+
+    // Improve keyboard navigation while focus is on result anchors
+    resultsEl.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        setSelected(selectedIndex + 1);
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        setSelected(selectedIndex - 1);
+      } else if (e.key === 'Enter') {
+        // if Enter pressed while an anchor is focused, allow default (opens link)
+        // but if not focused on anchor, open selected index
+        const lis = Array.from(resultsEl.querySelectorAll('li'));
+        if (selectedIndex >= 0 && displayedMatches[selectedIndex]) {
+          window.location.href = displayedMatches[selectedIndex].url;
+        }
+      } else if (e.key === 'Escape') {
+        qInput.focus();
+        qInput.value = '';
+        doSearch();
+      }
+    });
+
+    // clicking Clear button
+    clearBtn.addEventListener('click', () => {
+      qInput.value = '';
+      qInput.focus();
+      doSearch();
+    });
+
+    // initial render
+    render(items, '');
+  </script>
+</body>
+</html>

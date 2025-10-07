@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AI assistant — Pretty Chat</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* Full height so flex centering works reliably */
+    html, body { height: 100%; }
+    /* Container sizing tweak */
+    .chat-max-height { min-height: 60vh; max-height: 80vh; }
+
+    /* Scrollbar */
+    #messages { scrollbar-width: thin; scrollbar-color: rgba(148,163,184,.5) transparent; }
+    #messages::-webkit-scrollbar { height: 10px; width: 10px; }
+    #messages::-webkit-scrollbar-thumb { background: rgba(148,163,184,.55); border-radius: 999px; }
+
+    /* Message bubbles */
+    .bubble { max-width: 78%; word-break: break-word; white-space: pre-wrap; }
+    .bubble.user { border-top-right-radius: 6px; border-top-left-radius: 12px; border-bottom-left-radius: 12px; border-bottom-right-radius: 6px; }
+    .bubble.assistant { border-top-left-radius: 6px; border-top-right-radius: 12px; border-bottom-right-radius: 12px; border-bottom-left-radius: 6px; }
+
+    /* subtle glass */
+    .glass {
+      background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.55));
+      backdrop-filter: blur(6px);
+    }
+
+    /* typing ellipsis */
+    .typing > span {
+      display:inline-block;
+      width:6px;
+      height:6px;
+      margin:0 2px;
+      background:currentColor;
+      border-radius:999px;
+      opacity:0.3;
+      animation: bounce 1s infinite;
+    }
+    .typing > span:nth-child(2) { animation-delay: .15s; }
+    .typing > span:nth-child(3) { animation-delay: .3s; }
+    @keyframes bounce {
+      0% { transform: translateY(0); opacity:.25; }
+      50% { transform: translateY(-6px); opacity:1; }
+      100% { transform: translateY(0); opacity:.25; }
+    }
+
+    /* small utilities */
+    .msg-meta { font-size: 0.72rem; color: #64748b; }
+    pre { margin:0; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace; }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 to-slate-100 min-h-screen flex items-center justify-center p-4">
+  <div class="w-full max-w-4xl bg-white/80 glass rounded-2xl shadow-2xl p-5 flex flex-col chat-max-height" style="min-height:64vh;">
+    <header class="flex items-center justify-between gap-3 mb-4">
+      <div class="flex items-center gap-3">
+        <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-sky-600 text-white font-bold text-lg shadow-md">
+          AI
+        </div>
+        <div>
+          <h1 class="text-lg font-semibold leading-tight">AI Chat (local)</h1>
+          <div class="text-sm text-slate-500">Demo • temporary chat — refresh clears it</div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <label for="model" class="sr-only">Model</label>
+        <select id="model" class="rounded-md border px-3 py-2 text-sm bg-white">
+          <option value="llama-3.3-70b-versatile">llama-3.3-70b-versatile</option>
+          <option value="openai/gpt-oss-120b">openai/gpt-oss-120b</option>
+        </select>
+      </div>
+    </header>
+
+    <!-- Messages -->
+    <main class="flex-1 flex flex-col overflow-hidden">
+      <div id="messages" class="flex-1 overflow-auto p-4 space-y-4 rounded-lg border border-slate-100 bg-gradient-to-b from-white to-slate-50" role="log" aria-live="polite">
+        <!-- messages injected here -->
+      </div>
+
+      <!-- Input area -->
+      <form id="composer" class="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3 items-end">
+        <div class="sm:col-span-2">
+          <label for="input" class="sr-only">Message</label>
+          <textarea id="input" rows="3" placeholder="Type a message and press Enter (Shift+Enter = newline)" class="w-full rounded-xl border p-3 resize-none focus:outline-none focus:ring-2 focus:ring-sky-200" aria-label="Message input"></textarea>
+
+          <div class="mt-2 flex items-center justify-between text-xs text-slate-500">
+            <div>Press <kbd class="bg-slate-100 border rounded px-1">Enter</kbd> to send</div>
+            <div id="charCount">0</div>
+          </div>
+        </div>
+
+        <div class="flex gap-2 items-center justify-end">
+          <button id="clearBtn" type="button" class="px-3 py-2 rounded-lg border hover:bg-slate-50 text-sm">Clear</button>
+          <button id="sendBtn" type="submit" class="px-4 py-2 rounded-lg bg-sky-600 text-white hover:bg-sky-700 text-sm">Send</button>
+        </div>
+      </form>
+
+      <div class="mt-3 text-xs text-gray-500">
+        This demo uses an embedded API key. Replace the simulated reply with your real backend call.
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Simple messaging UI behavior
+    (function () {
+      const messagesEl = document.getElementById('messages');
+      const inputEl = document.getElementById('input');
+      const sendBtn = document.getElementById('sendBtn');
+      const clearBtn = document.getElementById('clearBtn');
+      const charCount = document.getElementById('charCount');
+      const modelSel = document.getElementById('model');
+
+      let isAssistantTyping = false;
+
+      // Utility: formatted timestamp
+      function timestamp() {
+        const d = new Date();
+        return d.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+      }
+
+      // Smoothly scroll messages to bottom
+      function scrollToBottom() {
+        messagesEl.scrollTo({
+          top: messagesEl.scrollHeight,
+          behavior: 'smooth'
+        });
+      }
+
+      // Create avatar element
+      function avatarFor(role) {
+        if (role === 'user') {
+          return `<div class="flex-none w-10 h-10 rounded-full bg-sky-600 text-white flex items-center justify-center font-medium">You</div>`;
+        } else {
+          return `<div class="flex-none w-10 h-10 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center font-medium">AI</div>`;
+        }
+      }
+
+      // Append a message to the list
+      function appendMessage({role, text, time = timestamp()}) {
+        const isUser = role === 'user';
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex items-start gap-3';
+        if (isUser) wrapper.classList.add('justify-end');
+
+        // message content
+        const bubble = document.createElement('div');
+        bubble.className = 'bubble p-3 shadow-sm';
+
+        if (isUser) {
+          bubble.classList.add('user', 'bg-sky-600', 'text-white');
+        } else {
+          bubble.classList.add('assistant', 'bg-white', 'text-slate-800', 'border', 'border-slate-100');
+        }
+
+        // meta row: timestamp + copy
+        const meta = document.createElement('div');
+        meta.className = 'flex items-center justify-between gap-2 mt-2 msg-meta';
+
+        // generate unique id for copy
+        const id = 'm-' + Math.random().toString(36).slice(2,9);
+
+        // message inner HTML
+        bubble.innerHTML = `
+          <div class="whitespace-pre-wrap" id="${id}">${escapeHtml(text)}</div>
+          <div class="mt-2 flex items-center justify-between msg-meta">
+            <div>${time}</div>
+            <div class="flex items-center gap-2">
+              <button data-copy="${id}" class="copy-btn text-xs px-2 py-1 rounded-md border bg-white/40 hover:bg-slate-50" aria-label="Copy message">Copy</button>
+            </div>
+          </div>
+        `;
+
+        // Arrange avatar + bubble
+        if (isUser) {
+          // user: bubble on the right, avatar after bubble
+          const avatar = document.createElement('div');
+          avatar.innerHTML = avatarFor('user');
+          wrapper.appendChild(bubble);
+          wrapper.appendChild(avatar);
+        } else {
+          const avatar = document.createElement('div');
+          avatar.innerHTML = avatarFor('assistant');
+          wrapper.appendChild(avatar);
+          wrapper.appendChild(bubble);
+        }
+
+        messagesEl.appendChild(wrapper);
+        // attach copy listeners
+        wrapper.querySelectorAll('.copy-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const targetId = btn.getAttribute('data-copy');
+            const textNode = document.getElementById(targetId);
+            if (textNode) navigator.clipboard?.writeText(textNode.innerText).then(() => {
+              btn.innerText = 'Copied';
+              setTimeout(() => btn.innerText = 'Copy', 1200);
+            }).catch(() => {
+              // fallback
+              alert('Copy failed — please select text manually.');
+            });
+          });
+        });
+
+        scrollToBottom();
+      }
+
+      // escape HTML to avoid injecting markup from user
+      function escapeHtml(unsafe) {
+        return unsafe
+          .replaceAll('&', '&amp;')
+          .replaceAll('<', '&lt;')
+          .replaceAll('>', '&gt;')
+          .replaceAll('"', '&quot;')
+          .replaceAll("'", '&#039;')
+          .replaceAll('\n', '<br>');
+      }
+
+      // show typing indicator bubble for assistant
+      function showTyping() {
+        isAssistantTyping = true;
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex items-start gap-3 typing-indicator';
+        wrapper.setAttribute('aria-hidden', 'true');
+        wrapper.innerHTML = `
+          <div class="flex-none w-10 h-10 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center font-medium">AI</div>
+          <div class="assistant bubble p-3 shadow-sm flex items-center gap-2 typing text-slate-700">
+            <span></span><span></span><span></span>
+          </div>
+        `;
+        messagesEl.appendChild(wrapper);
+        scrollToBottom();
+      }
+
+      function hideTyping() {
+        isAssistantTyping = false;
+        const el = messagesEl.querySelector('.typing-indicator');
+        if (el) el.remove();
+      }
+
+      // Simulated assistant reply (replace with your API call)
+      function assistantReply(userText) {
+        // show typing
+        showTyping();
+
+        // simulate streaming/typing with setTimeout
+        // create a fake reply (you would instead call your backend and stream)
+        const replyText = `Thanks — I received your message:\n\n"${userText.trim()}"\n\n(Selected model: ${modelSel.value})`;
+
+        // respond after a short random delay
+        const delay = 600 + Math.random() * 700;
+        setTimeout(() => {
+          hideTyping();
+          appendMessage({role: 'assistant', text: replyText});
+        }, delay);
+      }
+
+      // send message
+      function sendMessage() {
+        const text = inputEl.value.trim();
+        if (!text) return;
+        appendMessage({role: 'user', text});
+        inputEl.value = '';
+        charCount.innerText = '0';
+        // call assistant (simulated here)
+        assistantReply(text);
+      }
+
+      // keyboard handling: Enter to send, Shift+Enter for newline
+      inputEl.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          // prevent newline and submit
+          e.preventDefault();
+          sendMessage();
+        }
+      });
+
+      // update char count
+      inputEl.addEventListener('input', () => {
+        charCount.innerText = inputEl.value.length + ' chars';
+      });
+
+      // form submit (for button)
+      document.getElementById('composer').addEventListener('submit', (e) => {
+        e.preventDefault();
+        sendMessage();
+      });
+
+      // clear chat
+      clearBtn.addEventListener('click', () => {
+        messagesEl.innerHTML = '';
+        inputEl.focus();
+      });
+
+      // quick demo starter message
+      appendMessage({role: 'assistant', text: 'Hello! I\'m your local AI assistant. Type a message and press Enter to send.'});
+
+      // focus textarea on load
+      inputEl.focus();
+
+      // accessibility: announce model changes
+      modelSel.addEventListener('change', () => {
+        const ann = document.createElement('div');
+        ann.className = 'sr-only';
+        ann.setAttribute('aria-live', 'polite');
+        ann.innerText = `Model switched to ${modelSel.value}`;
+        document.body.appendChild(ann);
+        setTimeout(() => ann.remove(), 1500);
+      });
+
+    })();
+  </script>
+</body>
+</html>
