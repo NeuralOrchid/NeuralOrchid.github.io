@@ -1,182 +1,303 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Portfolio</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    ::-webkit-scrollbar {
-      width: 4px;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: rgba(0, 4, 12, 0.5);
-      border-radius: 10px;
-    }
-  </style>
-</head>
-<body class="bg-gray-800 text-gray-200 font-sans relative overflow-x-hidden">
-  <!-- Side Menu -->
-  <div id="sideMenu" class="fixed z-50 bg-black/30 backdrop-blur-md md:bg-transparent shadow-lg transition-transform md:h-screen md:left-0 md:-translate-y-1/2 md:translate-x-0 md:rounded-r-xl md:flex md:flex-col md:space-y-4 md:p-3 md:w-auto md:h-auto bottom-0 left-0 w-screen flex justify-around items-center py-6 space-x-6 md:space-x-0 md:space-y-4 transform translate-y-full md:transform-none md:justify-center">
-    <a href="https://github.com/NeuralOrchid" target="_blank" class="text-white hover:text-indigo-600 transition delay-150 duration-300 ease-in-out">      
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 w-6" viewBox="0 0 192 192" fill="none"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="12" d="M120.755 170c.03-4.669.059-20.874.059-27.29 0-9.272-3.167-15.339-6.719-18.41 22.051-2.464 45.201-10.863 45.201-49.067 0-10.855-3.824-19.735-10.175-26.683 1.017-2.516 4.413-12.63-.987-26.32 0 0-8.296-2.672-27.202 10.204-7.912-2.213-16.371-3.308-24.784-3.352-8.414.044-16.872 1.14-24.785 3.352C52.457 19.558 44.162 22.23 44.162 22.23c-5.4 13.69-2.004 23.804-.987 26.32C36.824 55.498 33 64.378 33 75.233c0 38.204 23.149 46.603 45.2 49.067-3.551 3.071-6.719 9.138-6.719 18.41 0 6.416.03 22.621.059 27.29M27 130c9.939.703 15.67 9.735 15.67 9.735 8.834 15.199 23.178 10.803 28.815 8.265"/></svg>
-    </a>
-    <a href="https://orcid.org/0009-0006-1260-4516" target="_blank" class="text-white hover:text-indigo-600 transition delay-150 duration-300 ease-in-out">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 w-6" viewBox="0 0 32 32"><path d="M 16 3 C 8.8321388 3 3 8.832144 3 16 C 3 23.167856 8.8321388 29 16 29 C 23.167861 29 29 23.167856 29 16 C 29 8.832144 23.167861 3 16 3 z M 16 5 C 22.086982 5 27 9.9130223 27 16 C 27 22.086978 22.086982 27 16 27 C 9.9130183 27 5 22.086978 5 16 C 5 9.9130223 9.9130183 5 16 5 z M 11 8 A 1 1 0 0 0 11 10 A 1 1 0 0 0 11 8 z M 10 11 L 10 22 L 12 22 L 12 11 L 10 11 z M 14 11 L 14 12 L 14 22 L 18.5 22 C 21.525577 22 24 19.525577 24 16.5 C 24 13.474423 21.525577 11 18.5 11 L 14 11 z M 16 13 L 18.5 13 C 20.444423 13 22 14.555577 22 16.5 C 22 18.444423 20.444423 20 18.5 20 L 16 20 L 16 13 z"/></svg>
-    </a>
-    
-    <button id="closeMenu" class="md:hidden text-white hover:text-red-600 text-xl transition delay-150 duration-300 ease-in-out">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 w-6" viewBox="0 0 24 24" fill="none">
-        <path d="M6 6L18 18M18 6L6 18" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mohammad-Reza Farahi - Deep Learning & Data Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+      ::-webkit-scrollbar {
+        width: 4px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #9C9C9C80;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body class="relative text-gray-900 min-h-screen bg-[#e8e0c5]">
+
+    <!-- Side Menu -->
+    <div id="sideMenu" class="fixed z-50 bg-black/30 backdrop-blur-md md:bg-transparent shadow-lg transition-transform md:h-screen md:left-0 md:-translate-y-1/2 md:translate-x-0 md:rounded-r-xl md:flex md:flex-col md:space-y-4 md:p-3 md:w-auto md:h-auto bottom-0 left-0 w-screen flex justify-around items-center py-6 space-x-6 md:space-x-0 md:space-y-4 transform translate-y-full md:transform-none md:justify-center">
+      <a href="https://github.com/NeuralOrchid" target="_blank" class="text-[#42110a] hover:text-white transition delay-150 duration-300 ease-in-out">      
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 w-6" viewBox="0 0 192 192" fill="none"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="12" d="M120.755 170c.03-4.669.059-20.874.059-27.29 0-9.272-3.167-15.339-6.719-18.41 22.051-2.464 45.201-10.863 45.201-49.067 0-10.855-3.824-19.735-10.175-26.683 1.017-2.516 4.413-12.63-.987-26.32 0 0-8.296-2.672-27.202 10.204-7.912-2.213-16.371-3.308-24.784-3.352-8.414.044-16.872 1.14-24.785 3.352C52.457 19.558 44.162 22.23 44.162 22.23c-5.4 13.69-2.004 23.804-.987 26.32C36.824 55.498 33 64.378 33 75.233c0 38.204 23.149 46.603 45.2 49.067-3.551 3.071-6.719 9.138-6.719 18.41 0 6.416.03 22.621.059 27.29M27 130c9.939.703 15.67 9.735 15.67 9.735 8.834 15.199 23.178 10.803 28.815 8.265"/></svg>
+      </a>
+      <a href="https://orcid.org/0009-0006-1260-4516" target="_blank" class="text-[#42110a] hover:text-white transition delay-150 duration-300 ease-in-out">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 w-6" viewBox="0 0 32 32"><path d="M 16 3 C 8.8321388 3 3 8.832144 3 16 C 3 23.167856 8.8321388 29 16 29 C 23.167861 29 29 23.167856 29 16 C 29 8.832144 23.167861 3 16 3 z M 16 5 C 22.086982 5 27 9.9130223 27 16 C 27 22.086978 22.086982 27 16 27 C 9.9130183 27 5 22.086978 5 16 C 5 9.9130223 9.9130183 5 16 5 z M 11 8 A 1 1 0 0 0 11 10 A 1 1 0 0 0 11 8 z M 10 11 L 10 22 L 12 22 L 12 11 L 10 11 z M 14 11 L 14 12 L 14 22 L 18.5 22 C 21.525577 22 24 19.525577 24 16.5 C 24 13.474423 21.525577 11 18.5 11 L 14 11 z M 16 13 L 18.5 13 C 20.444423 13 22 14.555577 22 16.5 C 22 18.444423 20.444423 20 18.5 20 L 16 20 L 16 13 z"></path></svg>
+      </a>
+      
+      <button id="closeMenu" class="md:hidden text-[#42110a] hover:text-red-600 text-xl transition delay-150 duration-300 ease-in-out">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 w-6" viewBox="0 0 24 24" fill="none">
+          <path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <a href="mailto:rqlzienc@gmail.com" class="text-[#42110a] hover:text-white transition delay-150 duration-300 ease-in-out">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 w-6" viewBox="0 0 192 192" fill="none"><path stroke="currentColor" stroke-linejoin="round" stroke-width="12" d="M22 57.265V142c0 5.523 4.477 10 10 10h24V95.056l40 30.278 40-30.278V152h24c5.523 0 10-4.477 10-10V57.265c0-13.233-15.15-20.746-25.684-12.736L96 81.265 47.684 44.53C37.15 36.519 22 44.032 22 57.265Z"/></svg>
+      </a>
+      <a href="https://t.me/To_cherish" target="_blank" class="text-[#42110a] hover:text-white transition delay-150 duration-300 ease-in-out">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 w-6" viewBox="0 0 192 192" fill="none"><path stroke="currentColor" stroke-width="12" d="M23.073 88.132s65.458-26.782 88.16-36.212c8.702-3.772 38.215-15.843 38.215-15.843s13.621-5.28 12.486 7.544c-.379 5.281-3.406 23.764-6.433 43.756-4.54 28.291-9.459 59.221-9.459 59.221s-.756 8.676-7.188 10.185c-6.433 1.509-17.027-5.281-18.919-6.79-1.513-1.132-28.377-18.106-38.214-26.404-2.649-2.263-5.676-6.79.378-12.071 13.621-12.447 29.891-27.913 39.728-37.72 4.54-4.527 9.081-15.089-9.837-2.264-26.864 18.483-53.35 35.835-53.35 35.835s-6.053 3.772-17.404.377c-11.351-3.395-24.594-7.921-24.594-7.921s-9.08-5.659 6.433-11.693Z"></path></svg>
+      </a>
+    </div>
+
+    <button id="openMenu" class="fixed -bottom-6 right-6 z-50 text-gray-300 hover:text-gray-400 p-2 rounded-full shadow-lg md:hidden transform -translate-y-full transition-transform bg-black/30 backdrop-blur-md transition duration-300 ease-in-out">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none">
+        <circle cx="5" cy="12" r="2" stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="12" cy="12" r="2" stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="19" cy="12" r="2" stroke="currentColor" stroke-width="1.5"/>
       </svg>
     </button>
 
-    <a href="mailto:rqlzienc@gmail.com" class="text-white hover:text-indigo-600 transition delay-150 duration-300 ease-in-out">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 w-6" viewBox="0 0 192 192" fill="none"><path stroke="currentColor" stroke-linejoin="round" stroke-width="12" d="M22 57.265V142c0 5.523 4.477 10 10 10h24V95.056l40 30.278 40-30.278V152h24c5.523 0 10-4.477 10-10V57.265c0-13.233-15.15-20.746-25.684-12.736L96 81.265 47.684 44.53C37.15 36.519 22 44.032 22 57.265Z"/></svg>
-    </a>
-    <a href="https://t.me/To_cherish" target="_blank" class="text-white hover:text-indigo-600 transition delay-150 duration-300 ease-in-out">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 w-6" viewBox="0 0 192 192" fill="none"><path stroke="currentColor" stroke-width="12" d="M23.073 88.132s65.458-26.782 88.16-36.212c8.702-3.772 38.215-15.843 38.215-15.843s13.621-5.28 12.486 7.544c-.379 5.281-3.406 23.764-6.433 43.756-4.54 28.291-9.459 59.221-9.459 59.221s-.756 8.676-7.188 10.185c-6.433 1.509-17.027-5.281-18.919-6.79-1.513-1.132-28.377-18.106-38.214-26.404-2.649-2.263-5.676-6.79.378-12.071 13.621-12.447 29.891-27.913 39.728-37.72 4.54-4.527 9.081-15.089-9.837-2.264-26.864 18.483-53.35 35.835-53.35 35.835s-6.053 3.772-17.404.377c-11.351-3.395-24.594-7.921-24.594-7.921s-9.08-5.659 6.433-11.693Z"/></svg>
-    </a>
-  </div>
+    <!-- Hero Section -->
+    <section class="relative flex flex-col items-center justify-center h-9//10 px-4 pb-12">
+      <img
+        src="https://drive.google.com/thumbnail?id=1tFS2a5pExkZ7WeeWaXEqkELCQfc0mYrA&sz=w1000"
+        class="w-60 h-60 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 hover:drop-shadow-2xl object-cover opacity-0 fade-in transition-all transition duration-700"
+        style="animation-delay: 0.5s"
+      />
+      <h1
+        class="relative text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold opacity-0 fade-in-up text-center mt-6 group leading-tight"
+        style="animation-delay: 1.3s"
+      >
+        <span class="transition-all transition duration-700">
+          Farahi
+        </span>
+        <!-- Random stars -->
+        <div class="hidden md:block">
+        <span class="absolute star h-6 w-6 delay-300" style="top: 30px; left: -60px; color: white;">
+          <svg viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M227.32471,135.51831l-63.81592,23.20581a7.99952,7.99952,0,0,0-4.78467,4.78442l-23.20557,63.81592a8.00026,8.00026,0,0,1-15.0371,0L97.27588,163.50854a7.99952,7.99952,0,0,0-4.78467-4.78442L28.67529,135.51831a8.00011,8.00011,0,0,1,0-15.03662L92.49121,97.27588a8.00016,8.00016,0,0,0,4.78467-4.78442l23.20557-63.81617a8.00035,8.00035,0,0,1,15.0371,0l23.20557,63.81617a8.00016,8.00016,0,0,0,4.78467,4.78442l63.81592,23.20581A8.00011,8.00011,0,0,1,227.32471,135.51831Z" fill="currentColor"/>
+          </svg>
+        </span>
+        <span class="absolute star h-6 w-6 delay-500" style="top: -20px; left: -20px; color: white;">
+          <svg viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M227.32471,135.51831l-63.81592,23.20581a7.99952,7.99952,0,0,0-4.78467,4.78442l-23.20557,63.81592a8.00026,8.00026,0,0,1-15.0371,0L97.27588,163.50854a7.99952,7.99952,0,0,0-4.78467-4.78442L28.67529,135.51831a8.00011,8.00011,0,0,1,0-15.03662L92.49121,97.27588a8.00016,8.00016,0,0,0,4.78467-4.78442l23.20557-63.81617a8.00035,8.00035,0,0,1,15.0371,0l23.20557,63.81617a8.00016,8.00016,0,0,0,4.78467,4.78442l63.81592,23.20581A8.00011,8.00011,0,0,1,227.32471,135.51831Z" fill="currentColor"/>
+          </svg>
+        </span>
+        <span class="absolute star h-6 w-6 delay-700" style="top: 50px; left: 10px; color: white;">
+          <svg viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M227.32471,135.51831l-63.81592,23.20581a7.99952,7.99952,0,0,0-4.78467,4.78442l-23.20557,63.81592a8.00026,8.00026,0,0,1-15.0371,0L97.27588,163.50854a7.99952,7.99952,0,0,0-4.78467-4.78442L28.67529,135.51831a8.00011,8.00011,0,0,1,0-15.03662L92.49121,97.27588a8.00016,8.00016,0,0,0,4.78467-4.78442l23.20557-63.81617a8.00035,8.00035,0,0,1,15.0371,0l23.20557,63.81617a8.00016,8.00016,0,0,0,4.78467,4.78442l63.81592,23.20581A8.00011,8.00011,0,0,1,227.32471,135.51831Z" fill="currentColor"/>
+          </svg>
+        </span>
+        <span class="absolute star h-6 w-6 delay-100" style="top: 10px; left: 26px; color: white;">
+          <svg viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M227.32471,135.51831l-63.81592,23.20581a7.99952,7.99952,0,0,0-4.78467,4.78442l-23.20557,63.81592a8.00026,8.00026,0,0,1-15.0371,0L97.27588,163.50854a7.99952,7.99952,0,0,0-4.78467-4.78442L28.67529,135.51831a8.00011,8.00011,0,0,1,0-15.03662L92.49121,97.27588a8.00016,8.00016,0,0,0,4.78467-4.78442l23.20557-63.81617a8.00035,8.00035,0,0,1,15.0371,0l23.20557,63.81617a8.00016,8.00016,0,0,0,4.78467,4.78442l63.81592,23.20581A8.00011,8.00011,0,0,1,227.32471,135.51831Z" fill="currentColor"/>
+          </svg>
+        </span>
+        <span class="absolute star h-6 w-6 delay-300" style="top: -10px; left: 50px; color: white;">
+          <svg viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M227.32471,135.51831l-63.81592,23.20581a7.99952,7.99952,0,0,0-4.78467,4.78442l-23.20557,63.81592a8.00026,8.00026,0,0,1-15.0371,0L97.27588,163.50854a7.99952,7.99952,0,0,0-4.78467-4.78442L28.67529,135.51831a8.00011,8.00011,0,0,1,0-15.03662L92.49121,97.27588a8.00016,8.00016,0,0,0,4.78467-4.78442l23.20557-63.81617a8.00035,8.00035,0,0,1,15.0371,0l23.20557,63.81617a8.00016,8.00016,0,0,0,4.78467,4.78442l63.81592,23.20581A8.00011,8.00011,0,0,1,227.32471,135.51831Z" fill="currentColor"/>
+          </svg>
+        </span>
+        <span class="absolute star h-6 w-6 delay-500" style="top: 2px; left: 80px; color: white;">
+          <svg viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M227.32471,135.51831l-63.81592,23.20581a7.99952,7.99952,0,0,0-4.78467,4.78442l-23.20557,63.81592a8.00026,8.00026,0,0,1-15.0371,0L97.27588,163.50854a7.99952,7.99952,0,0,0-4.78467-4.78442L28.67529,135.51831a8.00011,8.00011,0,0,1,0-15.03662L92.49121,97.27588a8.00016,8.00016,0,0,0,4.78467-4.78442l23.20557-63.81617a8.00035,8.00035,0,0,1,15.0371,0l23.20557,63.81617a8.00016,8.00016,0,0,0,4.78467,4.78442l63.81592,23.20581A8.00011,8.00011,0,0,1,227.32471,135.51831Z" fill="currentColor"/>
+          </svg>
+        </span>
+        <span class="absolute star h-6 w-6 delay-100" style="top: 60px; left: 90px; color: white;">
+          <svg viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M227.32471,135.51831l-63.81592,23.20581a7.99952,7.99952,0,0,0-4.78467,4.78442l-23.20557,63.81592a8.00026,8.00026,0,0,1-15.0371,0L97.27588,163.50854a7.99952,7.99952,0,0,0-4.78467-4.78442L28.67529,135.51831a8.00011,8.00011,0,0,1,0-15.03662L92.49121,97.27588a8.00016,8.00016,0,0,0,4.78467-4.78442l23.20557-63.81617a8.00035,8.00035,0,0,1,15.0371,0l23.20557,63.81617a8.00016,8.00016,0,0,0,4.78467,4.78442l63.81592,23.20581A8.00011,8.00011,0,0,1,227.32471,135.51831Z" fill="currentColor"/>
+          </svg>
+        </span>
+        <span class="absolute star h-6 w-6 delay-700" style="top: 67px; left: 110px; color: white;">
+          <svg viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M227.32471,135.51831l-63.81592,23.20581a7.99952,7.99952,0,0,0-4.78467,4.78442l-23.20557,63.81592a8.00026,8.00026,0,0,1-15.0371,0L97.27588,163.50854a7.99952,7.99952,0,0,0-4.78467-4.78442L28.67529,135.51831a8.00011,8.00011,0,0,1,0-15.03662L92.49121,97.27588a8.00016,8.00016,0,0,0,4.78467-4.78442l23.20557-63.81617a8.00035,8.00035,0,0,1,15.0371,0l23.20557,63.81617a8.00016,8.00016,0,0,0,4.78467,4.78442l63.81592,23.20581A8.00011,8.00011,0,0,1,227.32471,135.51831Z" fill="currentColor"/>
+          </svg>
+        </span>
+        <span class="absolute star h-6 w-6 delay-800" style="top: -20px; left: 140px; color: white;">
+          <svg viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M227.32471,135.51831l-63.81592,23.20581a7.99952,7.99952,0,0,0-4.78467,4.78442l-23.20557,63.81592a8.00026,8.00026,0,0,1-15.0371,0L97.27588,163.50854a7.99952,7.99952,0,0,0-4.78467-4.78442L28.67529,135.51831a8.00011,8.00011,0,0,1,0-15.03662L92.49121,97.27588a8.00016,8.00016,0,0,0,4.78467-4.78442l23.20557-63.81617a8.00035,8.00035,0,0,1,15.0371,0l23.20557,63.81617a8.00016,8.00016,0,0,0,4.78467,4.78442l63.81592,23.20581A8.00011,8.00011,0,0,1,227.32471,135.51831Z" fill="currentColor"/>
+          </svg>
+        </span>
+        <span class="absolute star h-6 w-6 delay-900" style="top: 40px; left: 180px; color: white;">
+          <svg viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M227.32471,135.51831l-63.81592,23.20581a7.99952,7.99952,0,0,0-4.78467,4.78442l-23.20557,63.81592a8.00026,8.00026,0,0,1-15.0371,0L97.27588,163.50854a7.99952,7.99952,0,0,0-4.78467-4.78442L28.67529,135.51831a8.00011,8.00011,0,0,1,0-15.03662L92.49121,97.27588a8.00016,8.00016,0,0,0,4.78467-4.78442l23.20557-63.81617a8.00035,8.00035,0,0,1,15.0371,0l23.20557,63.81617a8.00016,8.00016,0,0,0,4.78467,4.78442l63.81592,23.20581A8.00011,8.00011,0,0,1,227.32471,135.51831Z" fill="currentColor"/>
+          </svg>
+        </span>
+        <span class="absolute star h-6 w-6 delay-300" style="top: 10px; left: 200px; color: white;">
+          <svg viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M227.32471,135.51831l-63.81592,23.20581a7.99952,7.99952,0,0,0-4.78467,4.78442l-23.20557,63.81592a8.00026,8.00026,0,0,1-15.0371,0L97.27588,163.50854a7.99952,7.99952,0,0,0-4.78467-4.78442L28.67529,135.51831a8.00011,8.00011,0,0,1,0-15.03662L92.49121,97.27588a8.00016,8.00016,0,0,0,4.78467-4.78442l23.20557-63.81617a8.00035,8.00035,0,0,1,15.0371,0l23.20557,63.81617a8.00016,8.00016,0,0,0,4.78467,4.78442l63.81592,23.20581A8.00011,8.00011,0,0,1,227.32471,135.51831Z" fill="currentColor"/>
+          </svg>
+        </span>
+        <span class="absolute star h-6 w-6 delay-500" style="top: -5px; left: 260px; color: white;">
+          <svg viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M227.32471,135.51831l-63.81592,23.20581a7.99952,7.99952,0,0,0-4.78467,4.78442l-23.20557,63.81592a8.00026,8.00026,0,0,1-15.0371,0L97.27588,163.50854a7.99952,7.99952,0,0,0-4.78467-4.78442L28.67529,135.51831a8.00011,8.00011,0,0,1,0-15.03662L92.49121,97.27588a8.00016,8.00016,0,0,0,4.78467-4.78442l23.20557-63.81617a8.00035,8.00035,0,0,1,15.0371,0l23.20557,63.81617a8.00016,8.00016,0,0,0,4.78467,4.78442l63.81592,23.20581A8.00011,8.00011,0,0,1,227.32471,135.51831Z" fill="currentColor"/>
+          </svg>
+        </span>
+        <span class="absolute star h-6 w-6 delay-400" style="top: 60px; left: 240px; color: white;">
+          <svg viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M227.32471,135.51831l-63.81592,23.20581a7.99952,7.99952,0,0,0-4.78467,4.78442l-23.20557,63.81592a8.00026,8.00026,0,0,1-15.0371,0L97.27588,163.50854a7.99952,7.99952,0,0,0-4.78467-4.78442L28.67529,135.51831a8.00011,8.00011,0,0,1,0-15.03662L92.49121,97.27588a8.00016,8.00016,0,0,0,4.78467-4.78442l23.20557-63.81617a8.00035,8.00035,0,0,1,15.0371,0l23.20557,63.81617a8.00016,8.00016,0,0,0,4.78467,4.78442l63.81592,23.20581A8.00011,8.00011,0,0,1,227.32471,135.51831Z" fill="currentColor"/>
+          </svg>
+        </span>
+        </div>
+      </h1>
+      <p class="mt-2 sm:mt-4 text-sm sm:text-base md:text-lg text-gray-600 tracking-wide fade-in-up opacity-0 text-center max-w-xs sm:max-w-md" style="animation-delay: 1.6s">
+        Deep Learning Expert & Data Analyst
+      </p>
+    </section>
 
-  <button id="openMenu" class="fixed -bottom-6 right-6 z-50 text-white hover:text-gray-400 p-2 rounded-full shadow-lg md:hidden transform   -translate-y-full transition-transform bg-black/30 backdrop-blur-md transition delay-150 duration-300 ease-in-out">
-    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none">
-      <circle cx="5" cy="12" r="2" stroke="currentColor" stroke-width="1.5"/>
-      <circle cx="12" cy="12" r="2" stroke="currentColor" stroke-width="1.5"/>
-      <circle cx="19" cy="12" r="2" stroke="currentColor" stroke-width="1.5"/>
-    </svg>
-  </button>
-
-  <!-- Hero Section -->
-  <section class="min-h-screen flex flex-col justify-center items-center bg-gray-950 text-center px-4">
-    <h1 class="text-4xl md:text-6xl font-bold md:w-2/3"><span>Hey there, I’m </span><span class="bg-gradient-to-tl from-indigo-600 via-white to-white inline-block text-transparent bg-clip-text hover:from-indigo-600 hover:to-white transition delay-150 duration-300 ease-in-out"> Mohammad-Reza</span></h1>
-    <p class="text-xl mt-4 md:w-2/3">I help businesses and researchers make sense of data and build robust software.</p>
-    
-    <button class="relative inline-block font-medium group py-3 px-6 mt-6">
-      <span class="absolute inset-0 w-full h-full transition duration-400 ease-out transform translate-x-1 translate-y-1 bg-indigo-600 group-hover:-translate-x-0 group-hover:-translate-y-0 rounded-full rounded-es-none"></span>
-      <span class="absolute inset-0 w-full h-full bg-white border border-indigo-600 group-hover:bg-indigo-50 rounded-full rounded-es-none"></span>
-      <span class="relative text-indigo-600 ">Hire Me</span>
-    </button>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" class="py-20 px-4 max-w-4xl mx-auto md:w-2/3">
-    <h2 class="text-3xl font-bold mb-6">About Me</h2>
-    <div class="space-y-4 text-lg">
-      <p>
-        Hey! I’m <strong>Mohammad-Reza Farahi</strong> — a 🎓 <strong>Data Scientist & Software Developer</strong> with a background in pure mathematics and a love for building intelligent systems.
-      </p>
-      <p>
-        For the past 2 years, I’ve been freelancing 🧑‍💼 and working on personal and academic projects involving 
-        <strong>machine learning</strong>, <strong>deep learning</strong>, <strong>backend development</strong>, and <strong>data visualization</strong>.
-      </p>
-      <p>
-        🛠️ My go-to tools include <strong>Python</strong>, <strong>PyTorch</strong>, <strong>TensorFlow</strong>, <strong>Vue.js</strong>, <strong>Django</strong>, and <strong>PostgreSQL</strong>. 
-        Whether I’m designing NLP models, implementing backends, or visualizing data, I aim to craft smart, efficient solutions.
-      </p>
-      <p>
-        💡 My motto? <em>Take action, and the creativity will arrive.</em>
-      </p>
-      <p>
-        📄 I’ve also co-authored a paper on <strong>multi-modal rumor detection</strong>, bridging AI and real-world information challenges.
-      </p>
-      <p>
-        Outside of tech, I enjoy 📚 <strong>reading</strong> and 💪 <strong>hitting the gym</strong> to stay sharp and balanced.
-      </p>
-      <p>
-        🔍 I’m currently open for <strong>freelance work</strong> — if you're looking for a developer who can think in models and code in real time, let’s connect!
-      </p>
-    </div>
-  </section>
-
-  <!-- Portfolio Section -->
-  <section id="projects" class="py-20 px-4 max-w-6xl mx-auto md:w-2/3">
-    <h2 class="text-3xl font-bold text-center mb-12">Projects</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- One -->
-      <div>
-        <img src="https://images.pexels.com/photos/6157052/pexels-photo-6157052.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt=" random imgee" class="w-full object-cover object-center rounded-lg shadow-md">
-        <div class="relative px-4 -mt-16">
-          <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
-            <h3 class="text-xl font-semibold border-l-4 border-indigo-600 pl-2">Project One</h3>
-            <p class="text-sm text-gray-600 mt-2">A web app built with React and Tailwind CSS.</p>
-          </div>
+    <!-- Skills Cards Section -->
+    <section class="flex justify-center group">
+      <div
+        class="opacity-0 fade-in-up z-20"
+        style="animation-delay: 2.1s"
+      >
+        <div class="size-32 md:size-40 lg:size-64 md:size-56 neumorphism-1 bg-[#f0f0f3] grid place-items-center rounded-xl relative left-2.5 top-1.5 -rotate-6 group-hover:-translate-x-6 translate-x-6 group-hover:-rotate-12 group-hover:-translate-y-0.5 transition duration-500 group-hover:duration-200 hover:bg-[#fafafa]">
+          <img 
+            src="https://raw.githubusercontent.com/microsoft/PowerBI-Icons/24f1db8bdfab951c25db591772140d2f4ec5bc1e/SVG/Power-BI.svg"
+            class="w-2/3 grayscale hover:grayscale-0 transition duration-700 delay-50"
+          >
         </div>
       </div>
-      <!-- Two -->
-      <div>
-        <img src="https://images.pexels.com/photos/6157052/pexels-photo-6157052.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt=" random imgee" class="w-full object-cover object-center rounded-lg shadow-md">
-        <div class="relative px-4 -mt-16">
-          <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
-            <h3 class="text-xl font-semibold border-l-4 border-indigo-600 pl-2">Project Two</h3>
-            <p class="text-sm text-gray-600 mt-2">A web app built with React and Tailwind CSS.</p>
-          </div>
+      <div
+        class="opacity-0 fade-in-up z-30"
+        style="animation-delay: 1.8s"
+      >
+        <div class="size-32 md:size-40 lg:size-64 md:size-56 neumorphism-1 bg-[#f0f0f3] grid place-items-center rounded-xl group-hover:-translate-y-6 transition duration-500 group-hover:duration-200 hover:bg-[#fafafa]">
+          <img 
+            src="https://www.vectorlogo.zone/logos/pytorch/pytorch-icon.svg" 
+            class="w-4/5 grayscale hover:grayscale-0 transition duration-700 delay-50"
+          >
         </div>
       </div>
-      <!-- Three -->
-      <div>
-        <img src="https://images.pexels.com/photos/6157052/pexels-photo-6157052.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt=" random imgee" class="w-full object-cover object-center rounded-lg shadow-md">
-        <div class="relative px-4 -mt-16">
-          <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
-            <h3 class="text-xl font-semibold border-l-4 border-indigo-600 pl-2">Project Three</h3>
-            <p class="text-sm text-gray-600 mt-2">A web app built with React and Tailwind CSS.</p>
-          </div>
+      <div
+        class="opacity-0 fade-in-up z-20"
+        style="animation-delay: 2.4s"
+      >
+        <div class="size-32 md:size-40 lg:size-64 md:size-56 neumorphism-1 bg-[#f0f0f3] grid place-items-center rounded-xl relative right-2.5 top-1.5 rotate-6 group-hover:translate-x-6 -translate-x-6 group-hover:rotate-12 group-hover:-translate-y-0.5 transition duration-500 group-hover:duration-200 hover:bg-[#fafafa]">
+          <img 
+            src="https://wiki.postgresql.org/images/9/90/PostgreSQL_logo.1color_blue.svg" 
+            class="w-4/5 grayscale hover:grayscale-0 transition duration-700 delay-50"
+          >
         </div>
       </div>
-      <!-- One -->
-      <div>
-        <img src="https://images.pexels.com/photos/6157052/pexels-photo-6157052.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt=" random imgee" class="w-full object-cover object-center rounded-lg shadow-md">
-        <div class="relative px-4 -mt-16">
-          <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
-            <h3 class="text-xl font-semibold border-l-4 border-indigo-600 pl-2">Project One</h3>
-            <p class="text-sm text-gray-600 mt-2">A web app built with React and Tailwind CSS.</p>
-          </div>
-        </div>
-      </div>
-      <!-- Two -->
-      <div>
-        <img src="https://images.pexels.com/photos/6157052/pexels-photo-6157052.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt=" random imgee" class="w-full object-cover object-center rounded-lg shadow-md">
-        <div class="relative px-4 -mt-16">
-          <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
-            <h3 class="text-xl font-semibold border-l-4 border-indigo-600 pl-2">Project Two</h3>
-            <p class="text-sm text-gray-600 mt-2">A web app built with React and Tailwind CSS.</p>
-          </div>
-        </div>
-      </div>
-      <!-- Three -->
-      <div>
-        <img src="https://images.pexels.com/photos/6157052/pexels-photo-6157052.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt=" random imgee" class="w-full object-cover object-center rounded-lg shadow-md">
-        <div class="relative px-4 -mt-16">
-          <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
-            <h3 class="text-xl font-semibold border-l-4 border-indigo-600 pl-2">Project Three</h3>
-            <p class="text-sm text-gray-600 mt-2">A web app built with React and Tailwind CSS.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Footer -->
-  <footer class="text-center py-6 text-sm text-gray-500">
-    &copy; 2025 Mohammad-Reza Farahi. All rights reserved.
-  </footer>
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4 max-w-4xl mx-auto md:w-2/3">
+      <div 
+        class="neumorphism-2 flex flex-col md:flex-row md:items-start items-center gap-8 bg-[#f0f0f3] p-6 rounded-3xl"
+        
+      >
+        
+        <!-- Profile Image -->
+        <div class="flex-shrink-0">
+          <img src="https://drive.google.com/thumbnail?id=1wWotM1ecaGmkvU_a1bEsuHS773dSh5qP&sz=w1000" alt="Mohammad-Reza Farahi" class="w-32 h-32 md:w-40 md:h-40 lg:w-96 lg:h-96 rounded-5xl object-cover hover:scale-125 transition-all duration-500 ease-in-out" />
+        </div>
 
-  <!-- Script -->
-   <script>
-    // -- Script for mobile side menu toggle --
-    const sideMenu = document.getElementById('sideMenu');
-    const openMenu = document.getElementById('openMenu');
-    const closeMenu = document.getElementById('closeMenu');
+        <!-- Intro Text -->
+        <div>
+          <h2 class="text-3xl font-bold text-gray-800 mb-4 lg:mt-12">Hi, I’m Mohammad-Reza 👋</h2>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            I’m a deep learning engineer and backend developer. I build intelligent systems, shape messy data into smart decisions, and sometimes convince algorithms to do things they didn’t know they could.
+          </p>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            My code style is... unconventional. Expect elegant chaos: one-liners, weirdly cute ASCII art, and comments that read like diary entries. I love seeing my models evolve — it's like watching something wake up and learn.
+          </p>
+        </div>
+      </div>
 
-    openMenu.addEventListener('click', () => {
-      sideMenu.classList.remove('translate-y-full');
-      openMenu.classList.add('translate-y-full');
-    });
+      <!-- Second Row: Hobbies and Fun -->
+      <div class="mt-12 flex flex-row md:flex-col lg:flex-row items-start gap-8 p-2">
+        <!-- Friendly paragraph -->
+        <div class="text-gray-700 leading-relaxed flex flex-col">
+          <p class="">
+            When I’m not sculpting neural nets or sneaking math into casual conversations, you’ll find me quietly thriving in the chaos — headphones on, pixels behaving, and probably debugging something that wasn’t broken to begin with.
+          </p>
+          <p class="hidden lg:block mt-12">
+            I like my silence loud, my variables mysterious, and my jokes subtle enough to require a second pass. Fonts matter. So do shadows. And somewhere between midnight and dawn, you’ll catch me organizing code like a bookshelf — obsessively, imperfectly, and always a little poetically off.
+          </p>
+        </div>
+        
+        <!-- Fun image of friends -->
+        <div class="flex-shrink-0 hidden sm:block">
+          <img src="https://drive.google.com/thumbnail?id=1ba312e_MVjvvhTxb2GyIEjVC34msDMbW&sz=w1000" alt="Mohammad-Reza's friends" class="w-32 h-32 md:w-64 md:h-64 lg:w-96 lg:h-96 rounded-3xl object-cover neumorphism-1 border border-gray-200" />
+        </div>
+      </div>
 
-    closeMenu.addEventListener('click', () => {
-      sideMenu.classList.add('translate-y-full');
-      openMenu.classList.remove('translate-y-full');
-    });
-   </script>
-</body>
+      <!-- If I were a code... -->
+      <div class="neumorphism-2 text-black font-medium italic flex items-start bg-[#f0f0f3] p-6 rounded-3xl mt-12">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="_x32_" viewBox="0 0 512 512" xml:space="preserve" class="flex-inline w-16 pr-2" fill="#42110a">
+        <g>
+          <path class="st0" d="M119.472,66.59C53.489,66.59,0,120.094,0,186.1c0,65.983,53.489,119.487,119.472,119.487   c0,0-0.578,44.392-36.642,108.284c-4.006,12.802,3.135,26.435,15.945,30.418c9.089,2.859,18.653,0.08,24.829-6.389   c82.925-90.7,115.385-197.448,115.385-251.8C238.989,120.094,185.501,66.59,119.472,66.59z"/>
+          <path class="st0" d="M392.482,66.59c-65.983,0-119.472,53.505-119.472,119.51c0,65.983,53.489,119.487,119.472,119.487   c0,0-0.578,44.392-36.642,108.284c-4.006,12.802,3.136,26.435,15.945,30.418c9.089,2.859,18.653,0.08,24.828-6.389   C479.539,347.2,512,240.452,512,186.1C512,120.094,458.511,66.59,392.482,66.59z"/>
+        </g>
+        </svg>
+        <p> If I were a program, I’d be that undocumented method you stumble upon at 2 a.m. — rarely called, never deprecated, always returning something strange but correct. </p>
+      </div>
+    </section>
+
+    <!-- Recent Projects Section -->
+    <section id="projects" class="py-20 px-4 max-w-5xl mx-auto">
+      <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Recent Projects</h2>
+      <div class="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        
+        <!-- Project Card -->
+        <div class="neumorphism-2 bg-[#f0f0f3] p-6 rounded-3xl shadow-sm hover:shadow-lg transition duration-300">
+          <img src="https://drive.google.com/thumbnail?id=1KCJmEfD8G1TBcjC82ZOSjO4xWMZgqAl3&sz=w1000" alt="Project 1" class="w-full h-40 object-cover rounded-xl mb-4 hover:scale-125 transition-all duration-500 ease-in-out" />
+          <h3 class="text-xl font-semibold text-gray-800 mb-2 border-l-4 border-[#42110a] pl-2">E‑Commerce Sales & Customer Intelligence Dashboard in Power BI</h3>
+          <p class="text-gray-600 text-sm">Developed a Power BI analytics solution for an e-commerce retailer, tracking key sales KPIs by product, region, and time. Built interactive dashboards to reveal trends, seasonality, and customer insights using RFM segmentation. Integrated predictive forecasting (Power BI + Prophet) to support inventory planning and targeted marketing. Delivered actionable insights to boost profitability, reduce returns, and optimize customer engagement.</p>
+        </div>
+        
+        <!-- Project Card -->
+        <div class="neumorphism-2 bg-[#f0f0f3] p-6 rounded-3xl shadow-sm hover:shadow-lg transition duration-300">
+          <img src="https://drive.google.com/thumbnail?id=1jzR1dmsdArYt2doJWmI7NQQXr_lucRIZ&sz=w1000" alt="Project 1" class="w-full h-40 object-cover rounded-xl mb-4 hover:scale-125 transition-all duration-500 ease-in-out" />
+          <h3 class="text-xl font-semibold text-gray-800 mb-2 border-l-4 border-[#42110a] pl-2">End-to-End Transformer Architecture in PyTorch</h3>
+          <p class="text-gray-600 text-sm">Designed a modular transformer pipeline including dynamic positional encodings, learnable token embeddings, multi-head attention modules, and MLP bottleneck layers.
+Built visualization tools to track attention behavior, attribution saliency, and training dynamics in a TensorBoard-style interface.
+<br>
+PyTorch was used for all modeling, and training was optimized using AdamW, gradient clipping, and cosine decay learning rate scheduling.</p>
+          <div class="italic flex items-start text-gray-600 text-xs pt-2">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="_x32_" viewBox="0 0 512 512" xml:space="preserve" class="flex-inline w-6 pr-2" fill="#42110a">
+            <g>
+              <path class="st0" d="M119.472,66.59C53.489,66.59,0,120.094,0,186.1c0,65.983,53.489,119.487,119.472,119.487   c0,0-0.578,44.392-36.642,108.284c-4.006,12.802,3.135,26.435,15.945,30.418c9.089,2.859,18.653,0.08,24.829-6.389   c82.925-90.7,115.385-197.448,115.385-251.8C238.989,120.094,185.501,66.59,119.472,66.59z"/>
+              <path class="st0" d="M392.482,66.59c-65.983,0-119.472,53.505-119.472,119.51c0,65.983,53.489,119.487,119.472,119.487   c0,0-0.578,44.392-36.642,108.284c-4.006,12.802,3.136,26.435,15.945,30.418c9.089,2.859,18.653,0.08,24.828-6.389   C479.539,347.2,512,240.452,512,186.1C512,120.094,458.511,66.59,392.482,66.59z"/>
+            </g>
+            </svg>
+            <p>“If you stare into the attention matrix long enough, the transformer stares back.”</p>
+          </div>
+        </div>
+        
+        <!-- Project Card -->
+        <div class="neumorphism-2 bg-[#f0f0f3] p-6 rounded-3xl shadow-sm hover:shadow-lg transition duration-300">
+          <img src="https://drive.google.com/thumbnail?id=1yvJoOoI1V2GcJnWOXKY2btnXDqPU5dib&sz=w1000" alt="Project 1" class="w-full h-40 object-cover rounded-xl mb-4 hover:scale-125 transition-all duration-500 ease-in-out" />
+          <h3 class="text-xl font-semibold text-gray-800 mb-2 border-l-4 border-[#42110a] pl-2">Time Series Forecasting System for Anomaly Detection in Industrial Signals</h3>
+          <p class="text-gray-600 text-sm">Built a predictive analytics dashboard for multivariate time series using hybrid modeling (trend + seasonality decomposition with adaptive smoothing). Integrated residual-based anomaly detection and model confidence heatmaps. Dashboard supports deployment in industrial process monitoring environments.</p>
+        </div>
+
+        <!-- Project Card -->
+        <div class="neumorphism-2 bg-[#f0f0f3] p-6 rounded-3xl shadow-sm hover:shadow-lg transition duration-300">
+          <img src="https://drive.google.com/thumbnail?id=1XcdYCbYiF8LmqEimRtzF_pVtB7QlVOt2&sz=w1000" alt="Project 2" class="w-full h-40 object-cover rounded-xl mb-4 hover:scale-125 transition-all duration-500 ease-in-out" />
+          <h3 class="text-xl font-semibold text-gray-800 mb-2 border-l-4 border-[#42110a] pl-2">Geometric Intelligence Across Non-Euclidean Domains</h3>
+          <p class="text-gray-600 text-sm">Simulated anomaly fields and chaotic attractors within synthetic spacetime geometries to visualize tensor behaviors near event horizons. Built hybrid models combining phase instability with curvature estimation. Verified that time dilation is mildly inconvenient.</p>
+          <div class="italic flex items-start text-gray-600 text-xs pt-2">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="_x32_" viewBox="0 0 512 512" xml:space="preserve" class="flex-inline w-6 pr-2" fill="#42110a">
+            <g>
+              <path class="st0" d="M119.472,66.59C53.489,66.59,0,120.094,0,186.1c0,65.983,53.489,119.487,119.472,119.487   c0,0-0.578,44.392-36.642,108.284c-4.006,12.802,3.135,26.435,15.945,30.418c9.089,2.859,18.653,0.08,24.829-6.389   c82.925-90.7,115.385-197.448,115.385-251.8C238.989,120.094,185.501,66.59,119.472,66.59z"/>
+              <path class="st0" d="M392.482,66.59c-65.983,0-119.472,53.505-119.472,119.51c0,65.983,53.489,119.487,119.472,119.487   c0,0-0.578,44.392-36.642,108.284c-4.006,12.802,3.136,26.435,15.945,30.418c9.089,2.859,18.653,0.08,24.828-6.389   C479.539,347.2,512,240.452,512,186.1C512,120.094,458.511,66.59,392.482,66.59z"/>
+            </g>
+            </svg>
+            <p>"You get used to 12D rotations once your coffee learns quaternion logic."</p>
+          </div>
+        </div>
+
+        <!-- Project Card -->
+        <div class="neumorphism-2 bg-[#f0f0f3] p-6 rounded-3xl shadow-sm hover:shadow-lg transition duration-300">
+          <img src="https://drive.google.com/thumbnail?id=1hoXdFpMLahUX_RHj3q76y5XEinfwW3po&sz=w1000" alt="Project 3" class="w-full h-40 object-cover rounded-xl mb-4 hover:scale-125 transition-all duration-500 ease-in-out" />
+          <h3 class="text-xl font-semibold text-gray-800 mb-2 border-l-4 border-[#42110a] pl-2">Smart Grid Forecasting using Deep Learning</h3>
+          <p class="text-gray-600 text-sm">Designed and trained a multivariate sequence model to forecast energy usage across residential and industrial sources. Used signal decomposition, correlation filtering, and residual analysis to validate model performance. <br> Built full diagnostic dashboards including ACF/PACF, training curves, and probabilistic error modeling. </p>
+        </div>
+
+      </div>
+    </section>
+
+    <footer
+      class="absolute bottom-3 right-4 text-xs text-gray-500 hover:text-black transition group">
+      Made with <span class="group-hover:animate-pulse"> 💛 </span> | © Farahi 2025
+    </footer>
+
+    <!-- Scripts -->
+     <script src="main.js"></script>
+  </body>
 </html>

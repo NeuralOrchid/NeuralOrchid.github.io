@@ -1,0 +1,61 @@
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+.star {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+.group:hover .star {
+  opacity: 1;
+}
+
+h1:hover {
+  color: #f8d485;
+  text-shadow: 0.2rem 0.2rem #42110a;
+}
+
+.neumorphism-1 {
+  filter: 
+    drop-shadow(-10px -10px 20px #ffffff)  
+    drop-shadow(10px 10px 20px #f8d48566)
+  ;
+}
+
+.neumorphism-2 {
+  filter: 
+    drop-shadow(-10px -10px 20px #ffffff)  
+    drop-shadow(10px 10px 20px #f8d48566)
+  ;
+  box-shadow: inset -10px -10px 20px #f8d48540, inset 10px 10px 20px #ffffff;
+}
+
+.neumorphism-3 {
+  box-shadow: inset -10px -10px 30px #ffffffb4, inset 10px 10px 30px #f8d48551;
+}
+
+.hover-neumorphism:hover {
+  filter: 
+    drop-shadow(-10px -10px 10px #ffffff)  
+    drop-shadow(10px 10px 10px #f8d48566)
+  ;
+  box-shadow: inset -10px -10px 20px #f8d48540, inset 10px 10px 20px #ffffff;
+}
+
+.hover-neumorphism:focus {
+  filter: none;
+  box-shadow: inset -10px -10px 30px #ffffffb4, inset 10px 10px 30px #f8d48551;
+}
