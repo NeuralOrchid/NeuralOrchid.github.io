@@ -2,6 +2,7 @@
 /* Configuration - change here if your images are different */
 const CONFIG = {
   TOTAL_IMAGES: 50,         // how many images you have in images/
+  IMAGE_PATH: 'img',        // folder where images live
   IMAGE_EXT: 'png',         // extension like 'png' or 'svg'
   PAIRS: 8,                 // how many unique images to pick (8 -> 16 cards)
   CARD_FLIP_DELAY: 700      // ms delay when two cards don't match
@@ -44,7 +45,7 @@ function buildDeck(){
   shuffle(ids);
   const chosen = ids.slice(0, CONFIG.PAIRS);
   const pairItems = chosen.flatMap(id => {
-    const src = `icon${id}.${CONFIG.IMAGE_EXT}`;
+    const src = `${CONFIG.IMAGE_PATH}/Icon${id}.${CONFIG.IMAGE_EXT}`;
     return [{id, src, uid: `${id}-a`}, {id, src, uid: `${id}-b`}];
   });
   deck = shuffle(pairItems);

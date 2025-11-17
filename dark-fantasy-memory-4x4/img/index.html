@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Icons — Gallery</title>
+  <meta name="description" content="All icons (Icon1.png … Icon50.png) - click to open full size." />
+  <style>
+    :root{
+      --bg:#070708;
+      --card:#0f1113;
+      --muted:#9aa1a6;
+      --accent: #b98f3a;
+    }
+
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg, #030305 0%, #0b0b0d 100%);
+      color: #e6e7e8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:1rem;
+      padding:1rem;
+    }
+
+    header{
+      width:100%;
+      max-width:1100px;
+      text-align:center;
+      margin-bottom:0.25rem;
+    }
+    h1{
+      margin:0;
+      font-size:1.05rem;
+      letter-spacing:0.02em;
+      font-weight:600;
+      color: #f5f3ee;
+    }
+    p.lead{
+      margin:0.25rem 0 0.5rem 0;
+      color:var(--muted);
+      font-size:0.9rem;
+    }
+
+    /* Frame that keeps gallery nicely bounded on-screen */
+    .frame{
+      width: min(95vmin, 1100px);
+      max-width: 100%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      border-radius:12px;
+      padding:12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+
+    /* Responsive grid */
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(72px, 1fr));
+      gap:10px;
+      align-items:stretch;
+    }
+
+    /* Card */
+    .tile{
+      background: linear-gradient(180deg, var(--card), rgba(255,255,255,0.01));
+      border-radius:8px;
+      padding:8px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      aspect-ratio:1/1;
+      transition: transform 160ms ease, box-shadow 160ms ease;
+      border: 1px solid rgba(255,255,255,0.03);
+      overflow:hidden;
+      text-decoration:none;
+      color:inherit;
+    }
+    .tile:focus,
+    .tile:hover{
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.6);
+      outline: 3px solid rgba(185,143,58,0.08);
+    }
+
+    .tile img{
+      max-width: 76%;
+      max-height: 76%;
+      width:auto;
+      height:auto;
+      image-rendering: crisp-edges;
+      image-rendering: pixelated;
+      display:block;
+      margin:auto;
+      filter: drop-shadow(0 6px 18px rgba(0,0,0,0.6));
+    }
+
+    /* caption row */
+    .meta{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-top:10px;
+      font-size:0.82rem;
+      color:var(--muted);
+    }
+    .meta .hint{color:var(--muted);}
+
+    footer{
+      font-size:0.78rem;
+      color:var(--muted);
+      text-align:center;
+      max-width:1100px;
+    }
+
+    /* Small screens: tighten spacing */
+    @media (max-width:420px){
+      .gallery{ gap:8px; grid-template-columns: repeat(4, 1fr); }
+      .tile img{ max-width: 70%; max-height:70%; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Icon Gallery — All Icons</h1>
+    <p class="lead">Click any icon to open the full-size image in a new tab. (Files: <code>Icon1.png</code> … <code>Icon50.png</code>)</p>
+  </header>
+
+  <div class="frame" role="main" aria-label="Icons gallery">
+    <div class="gallery">
+      <a class="tile" href="Icon1.png" target="_blank" rel="noopener">
+        <img src="Icon1.png" alt="Icon 1">
+      </a>
+      <a class="tile" href="Icon2.png" target="_blank" rel="noopener">
+        <img src="Icon2.png" alt="Icon 2">
+      </a>
+      <a class="tile" href="Icon3.png" target="_blank" rel="noopener">
+        <img src="Icon3.png" alt="Icon 3">
+      </a>
+      <a class="tile" href="Icon4.png" target="_blank" rel="noopener">
+        <img src="Icon4.png" alt="Icon 4">
+      </a>
+      <a class="tile" href="Icon5.png" target="_blank" rel="noopener">
+        <img src="Icon5.png" alt="Icon 5">
+      </a>
+      <a class="tile" href="Icon6.png" target="_blank" rel="noopener">
+        <img src="Icon6.png" alt="Icon 6">
+      </a>
+      <a class="tile" href="Icon7.png" target="_blank" rel="noopener">
+        <img src="Icon7.png" alt="Icon 7">
+      </a>
+      <a class="tile" href="Icon8.png" target="_blank" rel="noopener">
+        <img src="Icon8.png" alt="Icon 8">
+      </a>
+      <a class="tile" href="Icon9.png" target="_blank" rel="noopener">
+        <img src="Icon9.png" alt="Icon 9">
+      </a>
+      <a class="tile" href="Icon10.png" target="_blank" rel="noopener">
+        <img src="Icon10.png" alt="Icon 10">
+      </a>
+      <a class="tile" href="Icon11.png" target="_blank" rel="noopener">
+        <img src="Icon11.png" alt="Icon 11">
+      </a>
+      <a class="tile" href="Icon12.png" target="_blank" rel="noopener">
+        <img src="Icon12.png" alt="Icon 12">
+      </a>
+      <a class="tile" href="Icon13.png" target="_blank" rel="noopener">
+        <img src="Icon13.png" alt="Icon 13">
+      </a>
+      <a class="tile" href="Icon14.png" target="_blank" rel="noopener">
+        <img src="Icon14.png" alt="Icon 14">
+      </a>
+      <a class="tile" href="Icon15.png" target="_blank" rel="noopener">
+        <img src="Icon15.png" alt="Icon 15">
+      </a>
+      <a class="tile" href="Icon16.png" target="_blank" rel="noopener">
+        <img src="Icon16.png" alt="Icon 16">
+      </a>
+      <a class="tile" href="Icon17.png" target="_blank" rel="noopener">
+        <img src="Icon17.png" alt="Icon 17">
+      </a>
+      <a class="tile" href="Icon18.png" target="_blank" rel="noopener">
+        <img src="Icon18.png" alt="Icon 18">
+      </a>
+      <a class="tile" href="Icon19.png" target="_blank" rel="noopener">
+        <img src="Icon19.png" alt="Icon 19">
+      </a>
+      <a class="tile" href="Icon20.png" target="_blank" rel="noopener">
+        <img src="Icon20.png" alt="Icon 20">
+      </a>
+      <a class="tile" href="Icon21.png" target="_blank" rel="noopener">
+        <img src="Icon21.png" alt="Icon 21">
+      </a>
+      <a class="tile" href="Icon22.png" target="_blank" rel="noopener">
+        <img src="Icon22.png" alt="Icon 22">
+      </a>
+      <a class="tile" href="Icon23.png" target="_blank" rel="noopener">
+        <img src="Icon23.png" alt="Icon 23">
+      </a>
+      <a class="tile" href="Icon24.png" target="_blank" rel="noopener">
+        <img src="Icon24.png" alt="Icon 24">
+      </a>
+      <a class="tile" href="Icon25.png" target="_blank" rel="noopener">
+        <img src="Icon25.png" alt="Icon 25">
+      </a>
+      <a class="tile" href="Icon26.png" target="_blank" rel="noopener">
+        <img src="Icon26.png" alt="Icon 26">
+      </a>
+      <a class="tile" href="Icon27.png" target="_blank" rel="noopener">
+        <img src="Icon27.png" alt="Icon 27">
+      </a>
+      <a class="tile" href="Icon28.png" target="_blank" rel="noopener">
+        <img src="Icon28.png" alt="Icon 28">
+      </a>
+      <a class="tile" href="Icon29.png" target="_blank" rel="noopener">
+        <img src="Icon29.png" alt="Icon 29">
+      </a>
+      <a class="tile" href="Icon30.png" target="_blank" rel="noopener">
+        <img src="Icon30.png" alt="Icon 30">
+      </a>
+      <a class="tile" href="Icon31.png" target="_blank" rel="noopener">
+        <img src="Icon31.png" alt="Icon 31">
+      </a>
+      <a class="tile" href="Icon32.png" target="_blank" rel="noopener">
+        <img src="Icon32.png" alt="Icon 32">
+      </a>
+      <a class="tile" href="Icon33.png" target="_blank" rel="noopener">
+        <img src="Icon33.png" alt="Icon 33">
+      </a>
+      <a class="tile" href="Icon34.png" target="_blank" rel="noopener">
+        <img src="Icon34.png" alt="Icon 34">
+      </a>
+      <a class="tile" href="Icon35.png" target="_blank" rel="noopener">
+        <img src="Icon35.png" alt="Icon 35">
+      </a>
+      <a class="tile" href="Icon36.png" target="_blank" rel="noopener">
+        <img src="Icon36.png" alt="Icon 36">
+      </a>
+      <a class="tile" href="Icon37.png" target="_blank" rel="noopener">
+        <img src="Icon37.png" alt="Icon 37">
+      </a>
+      <a class="tile" href="Icon38.png" target="_blank" rel="noopener">
+        <img src="Icon38.png" alt="Icon 38">
+      </a>
+      <a class="tile" href="Icon39.png" target="_blank" rel="noopener">
+        <img src="Icon39.png" alt="Icon 39">
+      </a>
+      <a class="tile" href="Icon40.png" target="_blank" rel="noopener">
+        <img src="Icon40.png" alt="Icon 40">
+      </a>
+      <a class="tile" href="Icon41.png" target="_blank" rel="noopener">
+        <img src="Icon41.png" alt="Icon 41">
+      </a>
+      <a class="tile" href="Icon42.png" target="_blank" rel="noopener">
+        <img src="Icon42.png" alt="Icon 42">
+      </a>
+      <a class="tile" href="Icon43.png" target="_blank" rel="noopener">
+        <img src="Icon43.png" alt="Icon 43">
+      </a>
+      <a class="tile" href="Icon44.png" target="_blank" rel="noopener">
+        <img src="Icon44.png" alt="Icon 44">
+      </a>
+      <a class="tile" href="Icon45.png" target="_blank" rel="noopener">
+        <img src="Icon45.png" alt="Icon 45">
+      </a>
+      <a class="tile" href="Icon46.png" target="_blank" rel="noopener">
+        <img src="Icon46.png" alt="Icon 46">
+      </a>
+      <a class="tile" href="Icon47.png" target="_blank" rel="noopener">
+        <img src="Icon47.png" alt="Icon 47">
+      </a>
+      <a class="tile" href="Icon48.png" target="_blank" rel="noopener">
+        <img src="Icon48.png" alt="Icon 48">
+      </a>
+      <a class="tile" href="Icon49.png" target="_blank" rel="noopener">
+        <img src="Icon49.png" alt="Icon 49">
+      </a>
+      <a class="tile" href="Icon50.png" target="_blank" rel="noopener">
+        <img src="Icon50.png" alt="Icon 50">
+      </a>
+    </div>
+
+    <div class="meta" aria-hidden="true">
+      <div class="hint">Tip: press <strong>Tab</strong> to focus, <strong>Enter</strong> to open.</div>
+      <div class="count">50 icons</div>
+    </div>
+  </div>
+
+  <footer>
+    This file lives inside the <code>img/</code> folder so paths are relative (e.g. <code>Icon1.png</code>).
+  </footer>
+</body>
+</html>
