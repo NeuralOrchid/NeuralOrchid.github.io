@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mohammad-Reza Farahi - Deep Learning & Data Analysis</title>
+    <link type="image/png" rel="icon" href="16.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
     <style>
@@ -187,7 +188,7 @@
         </div>
 
         <!-- Intro Text -->
-        <div>
+        <div id="intro-text">
           <h2 class="text-3xl font-bold text-gray-800 mb-4 lg:mt-12">Hi, I’m Mohammad-Reza 👋</h2>
           <p class="text-gray-700 leading-relaxed mb-4">
             I’m a deep learning engineer and backend developer. I build intelligent systems, shape messy data into smart decisions, and sometimes convince algorithms to do things they didn’t know they could.
@@ -195,6 +196,16 @@
           <p class="text-gray-700 leading-relaxed mb-4">
             My code style is... unconventional. Expect elegant chaos: one-liners, weirdly cute ASCII art, and comments that read like diary entries. I love seeing my models evolve — it's like watching something wake up and learn.
           </p>
+          <button onclick="translateIntroTextFa()"
+            class="inline-flex items-center px-6 py-2 rounded-xl
+                  border border-[#42110a]/30 text-[#42110a]
+                  text-sm tracking-wide
+                  transition-all duration-300
+                  hover:bg-[#42110a] hover:text-[#f0f0f3] hover:border-[#42110a]">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none">
+              <path d="M5 8L10 13M4 14L10 8L12 5M2 5H14M7 2H8M12.913 17H20.087M12.913 17L11 21M12.913 17L15.7783 11.009C16.0092 10.5263 16.1246 10.2849 16.2826 10.2086C16.4199 10.1423 16.5801 10.1423 16.7174 10.2086C16.8754 10.2849 16.9908 10.5263 17.2217 11.009L20.087 17M20.087 17L22 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
         </div>
       </div>
 
@@ -299,5 +310,22 @@ PyTorch was used for all modeling, and training was optimized using AdamW, gradi
 
     <!-- Scripts -->
      <script src="main.js"></script>
+
+    <!-- Primary CTA Button -->
+     <!-- 
+      <a
+        href="#projects"
+        class="group relative inline-flex items-center gap-2 px-7 py-3 mt-6
+              rounded-2xl bg-[#f0f0f3] text-[#42110a] font-medium
+              shadow-[6px_6px_12px_#cfcfd3,-6px_-6px_12px_#ffffff]
+              transition-all duration-300 ease-out
+              hover:-translate-y-1 hover:shadow-[10px_10px_20px_#c2c2c6,-10px_-10px_20px_#ffffff]
+              active:translate-y-0 active:shadow-inner">
+
+        <span class="relative z-10">
+          ✦
+        </span>
+      </a> 
+    -->
   </body>
 </html>
